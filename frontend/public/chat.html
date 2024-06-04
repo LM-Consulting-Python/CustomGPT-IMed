@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Interaction Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+        }
+        header img {
+            height: 50px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 90%;
+            max-width: 1200px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .sidebar, .chat-container, .details-container {
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+        .sidebar, .details-container {
+            width: 300px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        .chat-container {
+            flex-grow: 1;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            width: 600px; /* Largura fixa */
+            height: 700px; /* Altura fixa */
+        }
+        .chat-header, .chat-footer, .chat-body {
+            padding: 10px;
+        }
+        .chat-header, .chat-footer {
+            background-color: #007BFF;
+            color: white;
+        }
+        .chat-body {
+            background-color: #333;
+            color: white;
+            overflow-y: auto;
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        input, select, button {
+            margin: 5px 0;
+            padding: 10px;
+            width: calc(100% - 20px);
+        }
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .details-container p {
+            word-wrap: break-word;
+        }
+        .message {
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+            width: fit-content;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .message.question {
+            background-color: #32CD32;
+            color: white;
+            text-align: right;
+            align-self: flex-end;
+        }
+        .message.assistant {
+            background-color: #333;
+            color: white;
+            text-align: left;
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="image.png" alt="Bot Logo">
+        <h1>Assistente OpenAI</h1>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <button onclick="goBack()">Voltar para Principal</button>
+            <h2>Configuração do Assistente</h2>
+            <select id="assistants" onchange="loadAssistantConfig()">
+                <!-- Assistants will be loaded here dynamically -->
+            </select>
+            <input type="text" id="botName" placeholder="Nome do Bot">
+            <input type="file" id="botImage">
+            <input type="file" id="files" multiple>
+            <button onclick="applyChatConfig()">Aplicar Configurações</button>
+            <button onclick="updateFileSearch()">Atualizar File Search</button>
+        </div>
+        <div class="chat-container">
+            <div class="chat-header">
+                <img id="chatBotLogo" src="image.png" alt="Bot Logo">
+                <span id="chatBotName">FAM AI Engineer</span>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="chatInput" placeholder="Message...">
+                <button onclick="sendMessage()">Enviar</button>
+            </div>
+        </div>
+        <div class="details-container">
+            <h2>Detalhes do Assistente</h2>
+            <div id="assistantDetails">
+                <!-- Assistant details will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+    <script src="chat.js"></script>
+</body>
+</html>
